@@ -1,4 +1,4 @@
-import prisma from "@/db/prisma";
+import prisma from "../../db/prisma";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 
