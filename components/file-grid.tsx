@@ -1,23 +1,24 @@
 import React from "react"
 
 type Props = {
-  data: File[]
-}
+  data: FileItem[];
+};
 
-interface File {
+interface FileItem {
   id: string;
   file: string | null;
   title: string;
   author?: string;
-  authorId?: string | undefined;
+  authorId?: string | null;
   date?: string;
 }
+
 
 export default function FileGrid({ data }: Props) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="flex flex-wrap gap-5">
-        {data.map((item: File) => (
+        {data.map((item: FileItem) => (
           <div className="flex flex-col w-48 bg-slate-100 rounded-lg overflow-hidden border-4 hover:scale-105 transition ease-in-out">
             <div className="h-52 relative">
               <img

@@ -14,7 +14,8 @@ export default function Home({ feed }: HomeProps) {
             Upload File
           </button>
         </div>
-        <FileGrid data={feed as unknown as File[]} />
+        // @ts-ignore
+        <FileGrid data={feed} />
       </section>
     </>
   );
