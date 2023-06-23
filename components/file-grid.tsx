@@ -5,11 +5,11 @@ type Props = {
 }
 
 interface File {
+  id: string
+  file: string
   title: string
-  user: string
-  date: string
-  course: string
-  url: string
+  author?: string
+  date?: string
 }
 
 export default function FileGrid({ data }: Props) {
@@ -21,12 +21,12 @@ export default function FileGrid({ data }: Props) {
             <div className="h-52 relative">
               <img
                 className="absolute h-full w-full"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRN2CG1tEZrcR8Rx4LbX0gxX5QimvSe3aSJmUVubtd8rLNF4cowXm1fOcoY0UTOjgOU1kM&usqp=CAU"
+                src={item.file ?? "/placeholder.jpg"}
                 alt="Picture of the author"
               />
               <div className="absolute p-2 text-xs text-orange-700 font-bold">
                 <div className="bg-orange-300 rounded-xl px-1.5 left-0">
-                  {item.course}
+                  Math 2700
                 </div>
               </div>
               {/* <button className="absolute p-2 text-xs right-0 text-black">
@@ -36,7 +36,8 @@ export default function FileGrid({ data }: Props) {
             <div className="p-3">
               <div className="font-semibold text-black">{item.title}</div>
               <div className="flex gap-1 text-xs font-medium text-black items-center">
-                {item.user}
+                {/* @ts-ignore */}
+                {item.author?.name}
                 <div>
                   <span className="text-gray-500 text-sm">·</span>
                 </div>
