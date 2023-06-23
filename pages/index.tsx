@@ -1,6 +1,6 @@
+// @ts-nocheck
 import prisma from "../db/prisma";
 import { GetStaticProps, GetStaticPropsResult } from "next";
-// @ts-ignore
 import { PrismaClient, Post } from "@prisma/client";
 import Image from "next/image";
 import { Upload } from "lucide-react";
@@ -16,8 +16,7 @@ export default function Home({ feed }: HomeProps) {
             Upload File
           </button>
         </div>
-        {/*
- // @ts-ignore*/}
+
         <FileGrid data={feed} />
       </section>
     </>
