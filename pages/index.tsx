@@ -1,8 +1,6 @@
-// @ts-nocheck
 import prisma from "../db/prisma";
 import { GetStaticProps, GetStaticPropsResult } from "next";
-import { PrismaClient, Post } from "@prisma/client";
-import Image from "next/image";
+import { Post } from "@prisma/client";
 import { Upload } from "lucide-react";
 import FileGrid from "@/components/file-grid";
 
@@ -16,8 +14,7 @@ export default function Home({ feed }: HomeProps) {
             Upload File
           </button>
         </div>
-
-        <FileGrid data={feed} />
+        <FileGrid data={feed as unknown as File[]} />
       </section>
     </>
   );
@@ -26,6 +23,7 @@ export default function Home({ feed }: HomeProps) {
 interface HomeProps {
   feed: Post[];
 }
+
 
 export const getStaticProps: GetStaticProps<HomeProps> = async (): Promise<
   GetStaticPropsResult<HomeProps>
