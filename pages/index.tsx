@@ -1,4 +1,3 @@
-// @ts-ignore
 import prisma from "../db/prisma";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { PrismaClient, Post } from "@prisma/client";
@@ -11,11 +10,10 @@ export default function Home({ feed }: HomeProps) {
       <ul>
         {feed.map((post) => (
           <li key={post.id}>
-            <Image src={post.file} alt={post.title} width={300} height={200} />
+            <Image src={post.file ?? "/placeholder.jpg"} alt={post.title} width={300} height={200} />
             <div>
               <h2>{post.title}</h2>
               <p>{post.author?.name}</p>
-             
             </div>
           </li>
         ))}
