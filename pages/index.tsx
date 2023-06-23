@@ -1,3 +1,4 @@
+// @ts-ignore
 import prisma from "../db/prisma";
 import { GetStaticProps, GetStaticPropsResult } from "next";
 import { PrismaClient, Post } from "@prisma/client";
