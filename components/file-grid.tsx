@@ -5,11 +5,12 @@ type Props = {
 }
 
 interface File {
-  id: string
-  file: string
-  title: string
-  author?: string
-  date?: string
+  id: string;
+  file: string | null;
+  title: string;
+  author?: string;
+  authorId?: string | undefined;
+  date?: string;
 }
 
 export default function FileGrid({ data }: Props) {
