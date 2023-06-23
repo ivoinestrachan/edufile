@@ -57,7 +57,7 @@ export default function FileHub() {
        Upload File
         </button>
       </div>
-      <FileGrid data={data}/>
+      {/* <FileGrid data={data}/> */}
     </section>
   )
 }
