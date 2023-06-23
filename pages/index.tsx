@@ -21,6 +21,7 @@ export default function Home({ feed }: HomeProps) {
       </ul>
     </>
   );
+  
 }
 
 interface HomeProps {
