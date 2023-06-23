@@ -13,6 +13,7 @@ export default function Home({ feed }: HomeProps) {
             <Image src={post.file ?? "/placeholder.jpg"} alt={post.title} width={300} height={200} />
             <div>
               <h2>{post.title}</h2>
+                {/* @ts-ignore */}
               <p>{post.author?.name}</p>
             </div>
           </li>
