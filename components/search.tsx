@@ -1,5 +1,5 @@
 import React from 'react'
-import { CommandMenu } from './search-filter'
+import { CommandMenu } from './ui/search-filter'
 
 type Props = {}
 
