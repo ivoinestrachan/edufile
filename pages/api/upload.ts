@@ -18,13 +18,17 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== 'POST') {
+    console.log('Method not allowed:', req.method);
     res.status(405).send('Method not allowed');
     return;
   }
 
   const session = await getSession({ req });
 
-  if (!session) {
+  console.log('Session:', session);
+
+  if (!session || !session.user) {
+    console.log('Unauthorized');
     res.status(401).send('Unauthorized');
     return;
   }
@@ -33,8 +37,13 @@ export default async function handler(
     const form = formidable();
 
     form.parse(req, (err: any, fields: any, files: any) => {
-      if (err) reject({ err });
-      resolve({ err, fields, files });
+      if (err) {
+        console.log('Error parsing form:', err);
+        reject({ err });
+      } else {
+        console.log('Form parsed successfully:', { fields, files });
+        resolve({ err, fields, files });
+      }
     });
   });
 
@@ -49,7 +58,10 @@ export default async function handler(
       cloudinary.v2.uploader.upload(
         (file as { path: string }).path,
         (error: any, result: any) => {
-          if (!error) {
+          if (error) {
+            console.log('Error uploading to Cloudinary:', error);
+          } else {
+            console.log('Uploaded to Cloudinary:', result);
             media.push({
               //@ts-ignore
               url: result.url,

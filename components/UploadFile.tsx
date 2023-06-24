@@ -1,12 +1,14 @@
-import React, { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "./ui/button";
-import Image from "next/image";
+import React, { useState } from 'react';
+import { Input } from '@/components/ui/input';
+import { Button } from './ui/button';
+import Image from 'next/image';
+import { useSession } from 'next-auth/react';
 
 const UploadFile = () => {
   const [file, setFile] = useState<File | undefined | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
+  const { data: session } = useSession();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -19,22 +21,28 @@ const UploadFile = () => {
   };
 
   const handleSubmit = () => {
+    if (!session || !session.user) {
+      console.error('Unauthorized');
+      return;
+    }
+
     if (file) {
       const formData = new FormData();
-      formData.append("file", file);
-      formData.append("title", title);
+      formData.append('file', file);
+      formData.append('title', title);
 
-      fetch("/api/upload", {
-        method: "POST",
+      console.log('Submitting form data:', formData);
+
+      fetch('/api/upload', {
+        method: 'POST',
         body: formData,
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("Upload successful");
+          console.log('Upload successful:', data);
         })
         .catch((error) => {
-      
-          console.error("Upload failed:", error);
+          console.error('Upload failed:', error);
         });
     }
   };
