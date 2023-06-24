@@ -3,7 +3,7 @@ import formidable from "formidable";
 import cloudinary from "cloudinary";
 import { Post} from "@prisma/client";
 import { unstable_getServerSession } from "next-auth";
-import { authOptions } from "./auth/[...nextauth]";
+import authOptions from "./auth/[...nextauth]";
 
 //set bodyparser
 export const config = {
@@ -32,6 +32,7 @@ export default async function handler(
     res.status(405).send("Method not allowed");
     return;
   }
+  //@ts-ignore
   const session = await unstable_getServerSession(req, res, authOptions);
   if (!session || !session.user) {
     res.status(401).send("Unauthorized");
@@ -62,6 +63,7 @@ export default async function handler(
 
         if (!error) {
           media.push({
+              //@ts-ignore
             url: result.url,
             mediaType: result.resource_type,
             width: result.width,
