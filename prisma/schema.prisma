@@ -11,13 +11,15 @@ datasource db {
 }
 
 model Post {
-  id        String  @id @default(cuid())
+  id        String   @id @default(cuid())
   title     String
-  published Boolean @default(false)
-  author    User?@relation(fields:[authorId], references:[id])
+  published Boolean  @default(false)
+  author    User?   @relation(fields: [authorId], references: [id])
   authorId  String?
   file      String?
+  createdAt DateTime @default(now())
 }
+
 
 model Account {
   id                 String  @id @default(cuid())
