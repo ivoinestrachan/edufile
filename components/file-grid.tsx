@@ -8,9 +8,14 @@ interface FileItem {
   id: string;
   file: string | null;
   title: string;
-  author?: string;
+  author?: User | null;
   authorId?: string | null;
   date?: string;
+}
+
+interface User {
+  id: string;
+  name: string;
 }
 
 
