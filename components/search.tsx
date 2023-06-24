@@ -23,8 +23,8 @@ export default function SearchBar({}: Props) {
       <CommandMenu />
       <div className="flex flex-wrap w-full bg-gradient-to-r from-orange-400 via-orange-300 to-orange-400 rounded-md p-10 border-2 border-orange-600">
         <div className="p-2 backdrop-blur-lg flex flex-wrap">
-        {topics.map((topic) => (
-          <button className="bg-white hover:scale-105 hover:-translate-y-1 transition ease-in-out text-black rounded-md p-2 m-2 text-lg font-semibold shadow-md border-2 border-orange-600">
+        {topics.map((topic, i) => (
+          <button key={i} className="bg-white hover:scale-105 hover:-translate-y-1 transition ease-in-out text-black rounded-md p-2 m-2 text-lg font-semibold shadow-md border-2 border-orange-600">
             {topic}
           </button>
         ))}
