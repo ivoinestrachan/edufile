@@ -1,10 +1,10 @@
 import React from 'react';
 
-const UploadFile = ({ onClose }: { onClose: () => void }) => {
+const UploadFile = () => {
   return (
     <div>
       <div>
-        <input placeholder="title" />
+        <input className='text-black' placeholder="title" />
       </div>
       <div>
         <input type="file" />
@@ -12,9 +12,6 @@ const UploadFile = ({ onClose }: { onClose: () => void }) => {
       <div>
         <button>Post</button>
       </div>
-      <button onClick={onClose} className="text-[24px] font-bold">
-        X
-      </button>
     </div>
   );
 };
