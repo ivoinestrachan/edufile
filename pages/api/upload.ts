@@ -3,6 +3,9 @@ import formidable from 'formidable';
 import cloudinary from 'cloudinary';
 import { Post } from '@prisma/client';
 import { getSession } from 'next-auth/react';
+import { config } from 'dotenv';
+config();
+
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_NAME,

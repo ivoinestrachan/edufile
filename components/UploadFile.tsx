@@ -25,17 +25,21 @@ const UploadFile = () => {
       console.error('Unauthorized');
       return;
     }
-
+  
     if (file) {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('title', title);
-
-      console.log('Submitting form data:', formData);
-
+      const requestData = {
+        file,
+        title,
+      };
+  
+      console.log('Submitting form data:', requestData); // Add this console.log statement
+  
       fetch('/api/upload', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestData),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -46,6 +50,7 @@ const UploadFile = () => {
         });
     }
   };
+  
 
   return (
     <div className="flex flex-col gap-5">
