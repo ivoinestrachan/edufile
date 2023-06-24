@@ -21,17 +21,7 @@ import {
 
 export default function Home({ feed }: HomeProps) {
   const { data: session } = useSession();
-  const [showModal, setShowModal] = useState(false);
-
-  const handleButtonClick = () => {
-    if (session) {
-      setShowModal(true);
-    } else {
-      toast.error("Please log in to upload a file.");
-      console.log("Upload button clicked - User not logged in");
-    }
-  };
-
+  
   return (
     <>
       <ToastContainer />
@@ -39,10 +29,9 @@ export default function Home({ feed }: HomeProps) {
         <SearchBar />
         <div className="fixed z-50 right-0 bottom-0 left-0 p-10 flex justify-center">
           <Dialog>
-            <DialogTrigger asChild>
+            <DialogTrigger disabled={session ? false : true} asChild>
               <button
                 className="bg-orange-300 text-orange-700 p-2 items-center text-xl rounded-xl font-bold border-2 flex gap-1.5 border-orange-700 hover:scale-125 transition ease-in-out cursor-pointer"
-                onClick={handleButtonClick}
               >
                 <Upload />
                 Upload File
@@ -50,7 +39,7 @@ export default function Home({ feed }: HomeProps) {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px]">
               <div className="text-black">
-              <UploadFile/>
+                <UploadFile />
               </div>
             </DialogContent>
           </Dialog>
