@@ -19,10 +19,10 @@ const Navbar = () => {
             <button className="py-1.5 pl-5 pr-5 bg-white text-black rounded-md text-[18px]"
              type="button"
              onClick={handleSignIn}
-            >signin</button>
+            >SignIn</button>
           </div>
              ) : (
-                <div onClick={handleSignOut}>Logout</div>
+                <button onClick={handleSignOut} className="bg-red-500 py-1.5 pl-5 pr-5 rounded-md items-center">Logout</button>
               )}
         </div>
     );
