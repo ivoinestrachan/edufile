@@ -9,7 +9,7 @@ const UploadFile = () => {
   const [title, setTitle] = useState("");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0]; 
+    const selectedFile = event.target.files?.[0];
     setFile(selectedFile || null);
     setPreview(selectedFile ? URL.createObjectURL(selectedFile) : null);
   };
@@ -19,7 +19,24 @@ const UploadFile = () => {
   };
 
   const handleSubmit = () => {
-   
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("title", title);
+
+      fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("Upload successful");
+        })
+        .catch((error) => {
+      
+          console.error("Upload failed:", error);
+        });
+    }
   };
 
   return (
@@ -34,10 +51,12 @@ const UploadFile = () => {
       </div>
       <div>
         <input type="file" onChange={handleFileChange} />
-        {preview && <Image src={preview} alt="Preview" className="mt-2" width={200} height={200} />}
+        {preview && (
+          <Image src={preview} alt="Preview" className="mt-2" width={200} height={200} />
+        )}
       </div>
       <div>
-        <Button onClick={handleSubmit}>Post</Button>
+        <Button onClick={handleSubmit}>Upload</Button>
       </div>
     </div>
   );
