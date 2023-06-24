@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 type Props = {
   data: FileItem[];
@@ -18,13 +18,15 @@ interface User {
   name: string;
 }
 
-
 export default function FileGrid({ data }: Props) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="flex flex-wrap gap-5">
         {data.map((item: FileItem) => (
-          <div className="flex flex-col w-48 bg-slate-100 rounded-lg overflow-hidden border-4 hover:scale-105 transition ease-in-out">
+          <div
+            key={item.id}
+            className="flex flex-col w-48 bg-slate-100 rounded-lg overflow-hidden border-4 hover:scale-105 transition ease-in-out"
+          >
             <div className="h-52 relative">
               <img
                 className="absolute h-full w-full"
@@ -43,8 +45,11 @@ export default function FileGrid({ data }: Props) {
             <div className="p-3">
               <div className="font-semibold text-black">{item.title}</div>
               <div className="flex gap-1 text-xs font-medium text-black items-center">
-                {/* @ts-ignore */}
-                {item.author?.name}
+                {item.author ? (
+                  <span>{item.author.name}</span>
+                ) : (
+                  <span>Unknown Author</span>
+                )}
                 <div>
                   <span className="text-gray-500 text-sm">·</span>
                 </div>
@@ -55,5 +60,5 @@ export default function FileGrid({ data }: Props) {
         ))}
       </div>
     </div>
-  )
+  );
 }

@@ -82,6 +82,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async (): Promise<
 > => {
   const feed = await prisma.post.findMany({
     where: { published: true },
+    include: { author: true }
   });
   return {
     props: { feed },
