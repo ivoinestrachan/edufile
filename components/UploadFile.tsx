@@ -32,7 +32,7 @@ const UploadFile = () => {
         title,
       };
   
-      console.log('Submitting form data:', requestData); // Add this console.log statement
+      console.log('Submitting form data:', requestData);
   
       fetch('/api/upload', {
         method: 'POST',
