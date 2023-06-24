@@ -9,8 +9,8 @@ const UploadFile = () => {
   const [title, setTitle] = useState("");
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedFile = event.target.files?.[0]; // Use optional chaining to handle undefined case
-    setFile(selectedFile || null); // Set to null if selectedFile is undefined
+    const selectedFile = event.target.files?.[0]; 
+    setFile(selectedFile || null);
     setPreview(selectedFile ? URL.createObjectURL(selectedFile) : null);
   };
 
@@ -19,7 +19,7 @@ const UploadFile = () => {
   };
 
   const handleSubmit = () => {
-    // Add your logic for handling the form submission here
+   
   };
 
   return (
