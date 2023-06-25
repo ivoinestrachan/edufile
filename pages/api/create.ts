@@ -1,6 +1,6 @@
 import prisma from "../../db/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
+import { getServerSession } from "next-auth/next";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,7 +11,7 @@ export default async function handler(
     return;
   }
 
-  const session = await getSession({ req });
+  const session = await getServerSession({ req });
 
   if (!session || !session.user) {
     res.status(401).send("Unauthorized");

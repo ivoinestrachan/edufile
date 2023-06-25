@@ -2,10 +2,9 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import formidable from 'formidable';
 import cloudinary from 'cloudinary';
 import { Post } from '@prisma/client';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 import { config } from 'dotenv';
 config();
-
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -25,8 +24,8 @@ export default async function handler(
     res.status(405).send('Method not allowed');
     return;
   }
-
-  const session = await getSession({ req });
+// @ts-ignore
+  const session = await getServerSession({ req });
 
   console.log('Session:', session);
 
