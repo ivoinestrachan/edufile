@@ -1,3 +1,3 @@
-Ivione - Backend
-Som - Design
-Ariv - Frontend
+# Ivione - Backend
+# Som - Design
+# Ariv - Frontend
